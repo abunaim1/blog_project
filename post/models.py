@@ -11,6 +11,9 @@ class Post(models.Model):
     category = models.ManyToManyField(Category) # A post could be create by many categories and also Many post could be create base on a category. so this is many to many relationship
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
 
+    def __str__(self) -> str:
+        return f'{self.title}'
+
 
 """
 1. create project

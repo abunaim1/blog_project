@@ -1,6 +1,0 @@
-1. create project
-2. create app
-3. link app and all urls
-4. make all model
-5. do all admin setup
-6. 

@@ -4,7 +4,7 @@ from author.models import Author
 # Create your models here.
 
 class Post(models.Model):
-    title = models.CharField(max_length = 50)
+    title = models.CharField(max_length = 100)
     content = models.TextField()
     
     # making relationships
@@ -13,13 +13,3 @@ class Post(models.Model):
 
     def __str__(self) -> str:
         return f'{self.title}'
-
-
-"""
-1. create project
-2. create app
-3. link app and all urls
-4. make all model
-5. do all admin setup
-6. 
-"""

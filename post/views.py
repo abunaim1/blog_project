@@ -15,7 +15,7 @@ def add_post(request):
 
     return render(request, 'add_post.html', {'form':post})
 
-def edit_post(request,id ):
+def edit_post(request, id):
     post_ob = models.Post.objects.get(pk=id)
     post = PostForm(instance=post_ob)
     if request.method == 'POST':

@@ -8,8 +8,9 @@ def add_post(request):
     if request.method == 'POST':
         post = PostForm(request.POST)
         if post.is_valid():
+            post.instance.author = request.user
             post.save()
-            return redirect('add_post')
+            return redirect('home')
     else:
         post = PostForm()
 

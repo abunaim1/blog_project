@@ -1,11 +1,11 @@
 from django import forms
-from author.models import Author
-"""
-when we are working with a class and we need add some extra charecteristics/attributes to this class then we will use Meta class.
-"""
-class AuthorForm(forms.ModelForm):
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+
+class RegistrationForm(UserCreationForm):
+    first_name = forms.CharField(required=True)
+    last_name = forms.CharField(required=True)
+    email = forms.EmailField(required=True)
     class Meta:
-        model = Author
-        fields = '__all__'
-        # fields = ['name', 'bio']
-        # exclude = ['bio']
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'email']

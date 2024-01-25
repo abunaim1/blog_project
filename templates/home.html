@@ -1,21 +1,45 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
+{% load static %}
 {% block content %}
-<div class="d-flex flex-wrap justify-content-center px-5 py-5">
-    {% for post in data %}
-    <div class="col-sm-3">
-      <div class="card mx-2">
-        <div class="card-body">
-          <h5 class="card-title">{{ post.title }}</h5>
-          <p class="card-text">{{ post.content | truncatewords:30 }}</p>
-          <p class="card-text"><small>Author Name: {{post.author.first_name}} {{post.author.last_name}}</small></p>
-          <p>Category: 
-            {% for cat in post.category.all%}
-            <button class="btn btn-primary btn-sm disabled m-2">{{cat.name}}</button>
-            {% endfor %}
-          </p>
-        </div>
-      </div>
+<div class="d-flex align-items-center m-5">
+  <div>
+    <h2>Welcome to Django Blog</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit reiciendis animi nihil delectus consectetur cumque earum deserunt accusantium cum minima impedit deleniti laudantium, sed ipsam, asperiores quasi quam veniam soluta minus possimus? Magnam omnis, corporis, consequatur quibusdam ullam molestiae reprehenderit illo id error maiores necessitatibus sunt beatae assumenda libero soluta deleniti! Dolores alias veritatis cupiditate incidunt saepe molestias cum, odit inventore nostrum provident ipsam fugiat laudantium. Ipsa, veritatis quia voluptates autem facere deserunt distinctio tempore numquam tempora ipsum dolor non. Eum eius facilis magnam dolorum cupiditate eveniet odio iure, vero voluptatum vel quis nostrum exercitationem quaerat. Quaerat fuga cum aut.</p>
+  </div>
+  <img src="{% static 'banner.jpg' %}" alt="">
+</div>
+<div class="d-flex flex-wrap p-4">
+  <div class="col-2  border-end border-primary">
+    <h3>All Categories</h3>
+    {% for cat in data2%}
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="category " id="{{cat.id}}"/>
+      <label class="form-check-label" for="{{cat.id}}">
+        <a class="text-decoration-none text-dark" href="{% url 'category_slug' cat.slug %}">{{cat.name}}</a>
+      </label>
     </div>
     {% endfor %}
   </div>
+  <div class="col-10">
+    <h5 class="text-center">{{data | length}} results found</h5>
+    <div class="d-flex flex-wrap px-5 py-5">
+      {% for post in data %}
+      <div class="col-sm-3">
+        <div class="card mx-2">
+          <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <p class="card-text">{{ post.content | truncatewords:30 }}</p>
+            <p class="card-text"><small>Author Name: {{post.author.first_name}} {{post.author.last_name}}</small></p>
+            <p>
+              Category: {% for cat in post.category.all%}
+              <button class="btn btn-primary btn-sm disabled m-2">{{cat.name}}</button>
+              {% endfor %}
+            </p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
 {% endblock %}
